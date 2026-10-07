@@ -1933,7 +1933,7 @@ function add_to_player_score_override(n_points, str_awarded_by)
 }
 
 /*
-	Name: function_d51db887
+	Name: get_random_mega
 	Namespace: bgb
 	Checksum: 0x5FCF4FAE
 	Offset: 0x51D8
@@ -1941,7 +1941,9 @@ function add_to_player_score_override(n_points, str_awarded_by)
 	Parameters: 0
 	Flags: Linked
 */
-function function_d51db887()
+// This is used for the free gg ee in DE and SOE
+// It returns only a mega gobblegum (not ultra rare or rare mega just mega)
+function get_random_mega()
 {
 	keys = array::randomize(getarraykeys(level.bgb));
 	for(i = 0; i < keys.size; i++)

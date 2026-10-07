@@ -1584,7 +1584,7 @@ function function_7c237ecb(var_f00386ff = 0)
 	var_15cfdc94 waittill(#"trigger_activated", player);
 	zm_unitrigger::unregister_unitrigger(var_15cfdc94.s_unitrigger);
 	var_acadbb15 delete();
-	player.selected_bgb = bgb::function_d51db887();
+	player.selected_bgb = bgb::get_random_mega();
 	player thread bgb::bgb_gumball_anim(player.selected_bgb, 0);
 }
 

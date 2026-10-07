@@ -2166,7 +2166,7 @@ function function_63dde189()
 {
 	level waittill(#"between_round_over");
 	level waittill(#"between_round_over");
-	self.var_6cb12f5c = bgb::function_d51db887();
+	self.var_6cb12f5c = bgb::get_random_mega();
 	self setscale(2);
 }
 
