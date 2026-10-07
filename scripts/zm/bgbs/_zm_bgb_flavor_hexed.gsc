@@ -59,35 +59,35 @@ function event()
 {
 	self endon(#"disconnect");
 	self endon(#"bled_out");
-	self.var_c3a5a8 = [];
-	var_2cf032a6 = self.bgb_pack;
-	foreach(str_bgb, var_410edbc8 in level.bgb)
+	self.available_gums = [];
+	current_bgb_pack = self.bgb_pack;
+	foreach(str_bgb, gobble_gum in level.bgb)
 	{
-		if(var_410edbc8.consumable == 1)
+		if(gobble_gum.consumable == 1)
 		{
-			if(!isinarray(var_2cf032a6, str_bgb) && str_bgb != "zm_bgb_flavor_hexed")
+			if(!isinarray(current_bgb_pack, str_bgb) && str_bgb != "zm_bgb_flavor_hexed")
 			{
-				if(!isdefined(self.var_c3a5a8))
+				if(!isdefined(self.available_gums))
 				{
-					self.var_c3a5a8 = [];
+					self.available_gums = [];
 				}
-				else if(!isarray(self.var_c3a5a8))
+				else if(!isarray(self.available_gums))
 				{
-					self.var_c3a5a8 = array(self.var_c3a5a8);
+					self.available_gums = array(self.available_gums);
 				}
-				self.var_c3a5a8[self.var_c3a5a8.size] = str_bgb;
+				self.available_gums[self.available_gums.size] = str_bgb;
 			}
 		}
 	}
 	/#
-		assert(self.var_c3a5a8.size, "");
+		assert(self.available_gums.size, "");
 	#/
-	var_50f0f8bb = array::random(self.var_c3a5a8);
-	self thread function_9a45adfb(var_50f0f8bb);
+	gobble_gum_name = array::random(self.available_gums);
+	self thread activate(gobble_gum_name);
 }
 
 /*
-	Name: function_9a45adfb
+	Name: activate
 	Namespace: zm_bgb_flavor_hexed
 	Checksum: 0x82B521A0
 	Offset: 0x4B0
@@ -95,17 +95,17 @@ function event()
 	Parameters: 1
 	Flags: Linked
 */
-function function_9a45adfb(var_50f0f8bb)
+function activate(gobble_gum_name)
 {
 	wait(1);
-	self thread function_655e0571(var_50f0f8bb);
+	self thread handle_first_activation(gobble_gum_name);
 	self playsoundtoplayer("zmb_bgb_flavorhex", self);
-	self thread bgb::give(var_50f0f8bb);
-	arrayremovevalue(self.var_c3a5a8, var_50f0f8bb);
+	self thread bgb::give(gobble_gum_name);
+	arrayremovevalue(self.available_gums, gobble_gum_name);
 }
 
 /*
-	Name: function_655e0571
+	Name: handle_first_activation
 	Namespace: zm_bgb_flavor_hexed
 	Checksum: 0x218D34AA
 	Offset: 0x540
@@ -113,25 +113,25 @@ function function_9a45adfb(var_50f0f8bb)
 	Parameters: 1
 	Flags: Linked
 */
-function function_655e0571(var_50f0f8bb)
+function handle_first_activation(gobble_gum_name)
 {
 	self endon(#"disconnect");
 	self endon(#"bled_out");
 	self endon(#"bgb_gumball_anim_give");
-	self waittill("bgb_update_give_" + var_50f0f8bb);
-	self notify("bgb_flavor_hexed_give_" + var_50f0f8bb);
-	self waittill(#"bgb_update", var_1531e8c4, var_9a4acf7);
-	if(var_9a4acf7 === var_50f0f8bb && self.var_c3a5a8.size)
+	self waittill("bgb_update_give_" + gobble_gum_name);
+	self notify("bgb_flavor_hexed_give_" + gobble_gum_name);
+	self waittill(#"bgb_update", not_used, used_gobble_gum_name);
+	if(used_gobble_gum_name === gobble_gum_name && self.available_gums.size)
 	{
-		var_df8558a0 = array::random(self.var_c3a5a8);
+		new_gobble_gum_name = array::random(self.available_gums);
 		self playsoundtoplayer("zmb_bgb_flavorhex", self);
-		self thread function_21f6c6f5(var_df8558a0);
-		self bgb::give(var_df8558a0);
+		self thread handle_second_activation(new_gobble_gum_name);
+		self bgb::give(new_gobble_gum_name);
 	}
 }
 
 /*
-	Name: function_21f6c6f5
+	Name: handle_second_activation
 	Namespace: zm_bgb_flavor_hexed
 	Checksum: 0x8ED1A3AD
 	Offset: 0x650
@@ -139,11 +139,11 @@ function function_655e0571(var_50f0f8bb)
 	Parameters: 1
 	Flags: Linked
 */
-function function_21f6c6f5(var_50f0f8bb)
+function handle_second_activation(gobble_gum_name)
 {
 	self endon(#"disconnect");
 	self endon(#"bled_out");
-	self waittill("bgb_update_give_" + var_50f0f8bb);
-	self notify("bgb_flavor_hexed_give_" + var_50f0f8bb);
+	self waittill("bgb_update_give_" + gobble_gum_name);
+	self notify("bgb_flavor_hexed_give_" + gobble_gum_name);
 }
 
