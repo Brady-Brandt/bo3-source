@@ -162,7 +162,7 @@ function private bgb_player_init()
 			continue;
 		}
 		self.bgb_stats[bgb] = spawnstruct();
-		self.bgb_stats[bgb].var_e0b06b47 = self getbgbremaining(bgb);
+		self.bgb_stats[bgb].quantity = self getbgbremaining(bgb);
 		self.bgb_stats[bgb].bgb_used_this_game = 0;
 	}
 	self.bgb_machine_uses_this_round = 0;
@@ -223,6 +223,7 @@ function private bgb_finalize()
 	{
 		level.bgb[keys[i]].item_index = getitemindexfromref(keys[i]);
 		level.bgb[keys[i]].rarity = int(tablelookup(statstablename, 0, level.bgb[keys[i]].item_index, 16));
+		// 4 == whimsical, 0 == classics
 		if(0 == level.bgb[keys[i]].rarity || 4 == level.bgb[keys[i]].rarity)
 		{
 			level.bgb[keys[i]].consumable = 0;
@@ -232,10 +233,10 @@ function private bgb_finalize()
 			level.bgb[keys[i]].consumable = 1;
 		}
 		level.bgb[keys[i]].camo_index = int(tablelookup(statstablename, 0, level.bgb[keys[i]].item_index, 5));
-		var_cf65a2c0 = tablelookup(statstablename, 0, level.bgb[keys[i]].item_index, 15);
-		if(issubstr(var_cf65a2c0, "dlc"))
+		dlc_str = tablelookup(statstablename, 0, level.bgb[keys[i]].item_index, 15);
+		if(issubstr(dlc_str, "dlc"))
 		{
-			level.bgb[keys[i]].dlc_index = int(var_cf65a2c0[3]);
+			level.bgb[keys[i]].dlc_index = int(dlc_str[3]);
 			continue;
 		}
 		level.bgb[keys[i]].dlc_index = 0;
@@ -458,9 +459,9 @@ function private bgb_set_debug_text(name, activations_remaining)
 function bgb_print_stats(bgb)
 {
 	/#
-		printtoprightln((bgb + "") + self.bgb_stats[bgb].var_e0b06b47, (1, 1, 1));
+		printtoprightln((bgb + "") + self.bgb_stats[bgb].quantity, (1, 1, 1));
 		printtoprightln((bgb + "") + self.bgb_stats[bgb].bgb_used_this_game, (1, 1, 1));
-		n_available = self.bgb_stats[bgb].var_e0b06b47 - self.bgb_stats[bgb].bgb_used_this_game;
+		n_available = self.bgb_stats[bgb].quantity - self.bgb_stats[bgb].bgb_used_this_game;
 		printtoprightln((bgb + "") + n_available, (1, 1, 1));
 	#/
 }
@@ -530,14 +531,14 @@ function get_bgb_available(bgb)
 	{
 		return 1;
 	}
-	var_3232aae6 = self.bgb_stats[bgb].var_e0b06b47;
+	n_bgb_owned = self.bgb_stats[bgb].quantity;
 	n_bgb_used_this_game = self.bgb_stats[bgb].bgb_used_this_game;
-	n_bgb_remaining = var_3232aae6 - n_bgb_used_this_game;
+	n_bgb_remaining = n_bgb_owned - n_bgb_used_this_game;
 	return 0 < n_bgb_remaining;
 }
 
 /*
-	Name: function_c3e0b2ba
+	Name: bgb_anim_enable_invulnerability
 	Namespace: bgb
 	Checksum: 0xD1A78E06
 	Offset: 0x1DD8
@@ -545,9 +546,9 @@ function get_bgb_available(bgb)
 	Parameters: 2
 	Flags: Linked, Private
 */
-function private function_c3e0b2ba(bgb, activating)
+function private bgb_anim_enable_invulnerability(bgb, activating)
 {
-	if(!(isdefined(level.bgb[bgb].var_7ca0e2a7) && level.bgb[bgb].var_7ca0e2a7))
+	if(!(isdefined(level.bgb[bgb].enable_invulnerability) && level.bgb[bgb].enable_invulnerability))
 	{
 		return;
 	}
@@ -575,7 +576,7 @@ function bgb_gumball_anim(bgb, activating)
 	unlocked = __protected__getbgbunlocked();
 	if(activating)
 	{
-		self thread function_c3e0b2ba(bgb);
+		self thread bgb_anim_enable_invulnerability(bgb);
 		self thread zm_audio::create_and_play_dialog("bgb", "eat");
 	}
 	while(self isswitchingweapons())
@@ -789,7 +790,7 @@ function private bgb_limit_monitor()
 			for(i = level.bgb[self.bgb].limit; i > 0; i--)
 			{
 				level.bgb[self.bgb].var_32fa3cb7 = i;
-				if(level.bgb[self.bgb].var_336ffc4e)
+				if(level.bgb[self.bgb].activation_started)
 				{
 					function_497386b0();
 				}
@@ -995,7 +996,7 @@ function function_eabb0903(n_value)
 */
 function function_336ffc4e(name)
 {
-	level.bgb[name].var_336ffc4e = 1;
+	level.bgb[name].activation_started = 1;
 }
 
 /*
@@ -1363,7 +1364,7 @@ function register(name, limit_type, limit, enable_func, disable_func, validation
 	{
 		level.bgb[name].validation_func = validation_func;
 		level.bgb[name].activation_func = activation_func;
-		level.bgb[name].var_336ffc4e = 0;
+		level.bgb[name].activation_started = 0;
 	}
 	level.bgb[name].ref_count = 0;
 }
@@ -1456,7 +1457,7 @@ function function_ff4b2998(name, add_to_player_score_override_func, add_to_playe
 }
 
 /*
-	Name: function_4cda71bf
+	Name: set_invulnerability
 	Namespace: bgb
 	Checksum: 0xC631F42D
 	Offset: 0x3EC8
@@ -1464,12 +1465,12 @@ function function_ff4b2998(name, add_to_player_score_override_func, add_to_playe
 	Parameters: 2
 	Flags: Linked
 */
-function function_4cda71bf(name, var_7ca0e2a7)
+function set_invulnerability(name, enable_invulnerability)
 {
 	/#
 		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
-	level.bgb[name].var_7ca0e2a7 = var_7ca0e2a7;
+	level.bgb[name].enable_invulnerability = enable_invulnerability;
 }
 
 /*

@@ -40,7 +40,7 @@ function __init__()
 		return;
 	}
 	bgb::register("zm_bgb_idle_eyes", "activated", 3, undefined, undefined, &validation, &activation);
-	bgb::function_4cda71bf("zm_bgb_idle_eyes", 1);
+	bgb::set_invulnerability("zm_bgb_idle_eyes", 1);
 	bgb::function_336ffc4e("zm_bgb_idle_eyes");
 	if(!isdefined(level.vsmgr_prio_visionset_zm_bgb_idle_eyes))
 	{
