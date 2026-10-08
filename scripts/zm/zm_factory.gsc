@@ -119,7 +119,7 @@ function main()
 	level._effect["animscript_gib_fx"] = "zombie/fx_blood_torso_explo_zmb";
 	level._effect["animscript_gibtrail_fx"] = "trail/fx_trail_blood_streak";
 	level._effect["switch_sparks"] = "electric/fx_elec_sparks_directional_orange";
-	level.var_9cef605e = &function_81abed86;
+	level.bgb_activation_validation_callback = &function_81abed86;
 	level.default_start_location = "start_room";
 	level.default_game_mode = "zclassic";
 	zm::spawn_life_brush((700, -986, 280), 128, 128);

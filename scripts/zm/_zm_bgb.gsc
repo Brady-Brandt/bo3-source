@@ -595,7 +595,7 @@ function bgb_gumball_anim(bgb, activating)
 		succeeded = 1;
 		if(activating)
 		{
-			if(isdefined(level.bgb[bgb].var_7ea552f4) && level.bgb[bgb].var_7ea552f4 || self function_b616fe7a(1))
+			if(isdefined(level.bgb[bgb].skip_activation_validation) && level.bgb[bgb].skip_activation_validation || self can_activate_bgb(1))
 			{
 				self notify(#"hash_83da9d01", bgb);
 				self activation_start();
@@ -901,7 +901,7 @@ function private bgb_activation_monitor()
 	for(;;)
 	{
 		self waittill(#"bgb_activation_request");
-		if(!self function_b616fe7a(0))
+		if(!self can_activate_bgb(0))
 		{
 			continue;
 		}
@@ -913,7 +913,7 @@ function private bgb_activation_monitor()
 }
 
 /*
-	Name: function_b616fe7a
+	Name: can_activate_bgb
 	Namespace: bgb
 	Checksum: 0x17FBD8B1
 	Offset: 0x2E18
@@ -921,11 +921,11 @@ function private bgb_activation_monitor()
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_b616fe7a(var_5827b083 = 0)
+function private can_activate_bgb(ignore_drinking_check = 0)
 {
-	var_bb1d9487 = isdefined(level.bgb[self.bgb].validation_func) && !self [[level.bgb[self.bgb].validation_func]]();
-	var_847ec8da = isdefined(level.var_9cef605e) && !self [[level.var_9cef605e]]();
-	if(!var_5827b083 && (isdefined(self.is_drinking) && self.is_drinking) || (isdefined(self.bgb_activation_in_progress) && self.bgb_activation_in_progress) || self laststand::player_is_in_laststand() || var_bb1d9487 || var_847ec8da)
+	bgb_invalid  = isdefined(level.bgb[self.bgb].validation_func) && !self [[level.bgb[self.bgb].validation_func]]();
+	bgb_global_activation_invalid = isdefined(level.bgb_activation_validation_callback) && !self [[level.bgb_activation_validation_callback]]();
+	if(!ignore_drinking_check && (isdefined(self.is_drinking) && self.is_drinking) || (isdefined(self.bgb_activation_in_progress) && self.bgb_activation_in_progress) || self laststand::player_is_in_laststand() || bgb_invalid || bgb_global_activation_invalid)
 	{
 		self clientfield::increment_uimodel("bgb_invalid_use");
 		self playlocalsound("zmb_bgb_deny_plr");
@@ -1512,7 +1512,7 @@ function function_2060b89(name)
 }
 
 /*
-	Name: function_f132da9c
+	Name: enable_skip_activation_validation
 	Namespace: bgb
 	Checksum: 0x3F20E3AF
 	Offset: 0x4010
@@ -1520,12 +1520,12 @@ function function_2060b89(name)
 	Parameters: 1
 	Flags: Linked
 */
-function function_f132da9c(name)
+function enable_skip_activation_validation(name)
 {
 	/#
 		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
-	level.bgb[name].var_7ea552f4 = 1;
+	level.bgb[name].skip_activation_validation = 1;
 }
 
 /*

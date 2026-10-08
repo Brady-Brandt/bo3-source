@@ -123,7 +123,7 @@ function main()
 	level.start_weapon = level.default_laststandpistol;
 	level thread zm::last_stand_pistol_rank_init();
 	level.var_9aaae7ae = &function_869d6f66;
-	level.var_9cef605e = &function_823705c7;
+	level.bgb_activation_validation_callback = &function_823705c7;
 	if(getdvarint("artist") > 0)
 	{
 		return;

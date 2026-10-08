@@ -239,7 +239,7 @@ function main()
 	zm_craftables::init();
 	zm_stalingrad_craftables::include_craftables();
 	zm_stalingrad_craftables::init_craftables();
-	level.var_9cef605e = &dragon::function_aaf7e575;
+	level.bgb_activation_validation_callback = &dragon::function_aaf7e575;
 	level thread dragon::function_90d81e44();
 	include_weapons();
 	function_42795aca();

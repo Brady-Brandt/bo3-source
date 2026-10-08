@@ -189,7 +189,7 @@ function main()
 	level.var_2d0e5eb6 = &function_8921895f;
 	level.var_9aaae7ae = &function_869d6f66;
 	level.var_2d4e3645 = &function_d9e1ec4d;
-	level.var_9cef605e = &function_98a0818e;
+	level.bgb_activation_validation_callback = &function_98a0818e;
 	level.gravityspike_position_check = &function_6190ec3f;
 	level.player_score_override = &function_77b8a0f7;
 	level.team_score_override = &function_5a64329b;

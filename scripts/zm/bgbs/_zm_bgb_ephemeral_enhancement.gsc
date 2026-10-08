@@ -43,7 +43,7 @@ function __init__()
 		return;
 	}
 	bgb::register("zm_bgb_ephemeral_enhancement", "activated", 2, undefined, undefined, &validation, &activation);
-	bgb::function_f132da9c("zm_bgb_ephemeral_enhancement");
+	bgb::enable_skip_activation_validation("zm_bgb_ephemeral_enhancement");
 	bgb::function_336ffc4e("zm_bgb_ephemeral_enhancement");
 }
 

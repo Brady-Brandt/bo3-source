@@ -172,7 +172,7 @@ function main()
 	scene::add_scene_func("p7_fxanim_zm_sumpf_zipline_down_bundle", &function_b87f949f, "init");
 	level scene::init("p7_fxanim_zm_sumpf_zipline_down_bundle");
 	level.var_9aaae7ae = &function_869d6f66;
-	level.var_9cef605e = &function_3e7eb37b;
+	level.bgb_activation_validation_callback = &function_3e7eb37b;
 	level thread zm_sumpf_ffotd::main_end();
 }
 

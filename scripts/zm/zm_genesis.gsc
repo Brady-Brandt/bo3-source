@@ -233,7 +233,7 @@ function main()
 	level.enemy_location_override_func = &function_b51f6175;
 	level.player_intersection_tracker_override = &function_1b647c97;
 	level.var_9aaae7ae = &function_869d6f66;
-	level.var_9cef605e = &function_cc2772da;
+	level.bgb_activation_validation_callback = &function_cc2772da;
 	level.var_2d4e3645 = &function_d9e1ec4d;
 	level.var_1c0253f1 = &zm_genesis_ee_quest::function_d86f4446;
 	level.var_774896e3 = "power_on3";

@@ -182,7 +182,7 @@ function main()
 	level.zm_custom_get_next_wasp_round = &function_612012aa;
 	level.zm_custom_get_next_raps_round = &function_612012aa;
 	level.zm_wasp_spawn_callback = &function_f88e4c70;
-	level.var_9cef605e = &function_89b7689f;
+	level.bgb_activation_validation_callback = &function_89b7689f;
 	level.var_2300a8ad = &function_42cc727b;
 	level.var_2d0e5eb6 = &function_2d0e5eb6;
 	level.var_2c12d9a6 = &function_533186ee;
