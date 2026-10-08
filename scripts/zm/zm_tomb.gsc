@@ -303,7 +303,7 @@ function main()
 	level.var_9aaae7ae = &function_869d6f66;
 	level.var_9f5c2c50 = &function_e36dbcf4;
 	level.var_2d4e3645 = &function_d9e1ec4d;
-	level.var_2d0e5eb6 = &function_2d0e5eb6;
+	level.get_random_powerup_str_cb = &function_2d0e5eb6;
 	level thread zm_tomb_ambient_scripts::function_add29756();
 	level thread zm_perks::spare_change();
 	zm_tomb_ffotd::main_end();

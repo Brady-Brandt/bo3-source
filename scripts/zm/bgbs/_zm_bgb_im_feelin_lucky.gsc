@@ -54,45 +54,44 @@ function __init__()
 function activation()
 {
 	powerup_origin = self bgb::get_player_dropped_powerup_origin();
-	var_a8c63b5d = 0.75;
 	n_roll = randomfloatrange(0, 1);
-	if(n_roll < var_a8c63b5d)
+	if(n_roll < 0.75)
 	{
-		var_93eb638b = zm_powerups::specific_powerup_drop(zm_powerups::get_regular_random_powerup_name(), powerup_origin);
+		random_drop = zm_powerups::specific_powerup_drop(zm_powerups::get_regular_random_powerup_name(), powerup_origin);
 	}
 	else
 	{
-		if(isdefined(level.var_2d0e5eb6))
+		if(isdefined(level.get_random_powerup_str_cb))
 		{
-			str_powerup = [[level.var_2d0e5eb6]]();
+			str_powerup = [[level.get_random_powerup_str_cb]]();
 		}
 		else
 		{
-			str_powerup = function_29a9b9b8();
+			str_powerup = get_random_powerup_str();
 		}
 		if(str_powerup === "free_perk")
 		{
-			if(isdefined(level.var_2d0e5eb6))
+			if(isdefined(level.get_random_powerup_str_cb))
 			{
-				str_powerup = [[level.var_2d0e5eb6]]();
+				str_powerup = [[level.get_random_powerup_str_cb]]();
 			}
 			else
 			{
-				str_powerup = function_29a9b9b8();
+				str_powerup = get_random_powerup_str();
 			}
 		}
-		var_93eb638b = zm_powerups::specific_powerup_drop(str_powerup, powerup_origin, undefined, undefined, undefined, self);
+		random_drop = zm_powerups::specific_powerup_drop(str_powerup, powerup_origin, undefined, undefined, undefined, self);
 	}
-	var_bc1994bd = zm_utility::check_point_in_enabled_zone(var_93eb638b.origin, undefined, undefined);
+	is_in_enabled_zone = zm_utility::check_point_in_enabled_zone(random_drop.origin, undefined, undefined);
 	wait(1);
-	if(!var_bc1994bd)
+	if(!is_in_enabled_zone)
 	{
-		level thread bgb::function_434235f9(var_93eb638b);
+		level thread bgb::function_434235f9(random_drop);
 	}
 }
 
 /*
-	Name: function_29a9b9b8
+	Name: get_random_powerup_str
 	Namespace: zm_bgb_im_feelin_lucky
 	Checksum: 0x43562EDC
 	Offset: 0x400
@@ -100,17 +99,18 @@ function activation()
 	Parameters: 0
 	Flags: Linked
 */
-function function_29a9b9b8()
+function get_random_powerup_str()
 {
-	var_d7a75a6e = getarraykeys(level.zombie_powerups);
-	var_d7a75a6e = array::randomize(var_d7a75a6e);
-	foreach(str_key in var_d7a75a6e)
+	powerups = getarraykeys(level.zombie_powerups);
+	powerups = array::randomize(powerups);
+	foreach(str_key in powerups)
 	{
+		// prevents dropping widows wine grenades and the void bow runes
 		if(level.zombie_powerups[str_key].player_specific === 1)
 		{
-			arrayremovevalue(var_d7a75a6e, str_key);
+			arrayremovevalue(powerups, str_key);
 		}
 	}
-	return var_d7a75a6e[0];
+	return powerups[0];
 }
 

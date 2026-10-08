@@ -272,7 +272,7 @@ function main()
 	level thread zm_stalingrad_fx::fx_overrides();
 	level thread function_80eaf8a();
 	level.var_2c12d9a6 = &function_277575cc;
-	level.var_2d0e5eb6 = &function_2d0e5eb6;
+	level.get_random_powerup_str_cb = &function_2d0e5eb6;
 	level.var_b6d13a4e = &function_13df0656;
 	level.var_464197de = &function_90cae0a9;
 	level thread zm_stalingrad_wearables::function_eed58360();

@@ -184,7 +184,7 @@ function main()
 	level.zm_wasp_spawn_callback = &function_f88e4c70;
 	level.bgb_activation_validation_callback = &function_89b7689f;
 	level.var_2300a8ad = &function_42cc727b;
-	level.var_2d0e5eb6 = &function_2d0e5eb6;
+	level.get_random_powerup_str_cb = &function_2d0e5eb6;
 	level.var_2c12d9a6 = &function_533186ee;
 	level.check_end_solo_game_override = &check_end_solo_game_override;
 	level._game_module_game_end_check = &function_63f29efd;

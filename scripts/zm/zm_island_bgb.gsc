@@ -34,7 +34,7 @@
 function init()
 {
 	level.var_2c12d9a6 = &function_fa778ca4;
-	level.var_2d0e5eb6 = &function_2d0e5eb6;
+	level.get_random_powerup_str_cb = &function_2d0e5eb6;
 }
 
 /*

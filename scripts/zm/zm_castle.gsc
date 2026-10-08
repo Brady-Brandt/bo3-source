@@ -186,7 +186,7 @@ function main()
 	level.enemy_location_override_func = &enemy_location_override;
 	level.no_target_override = &no_target_override;
 	level.minigun_damage_adjust_override = &function_ec8a9331;
-	level.var_2d0e5eb6 = &function_8921895f;
+	level.get_random_powerup_str_cb = &function_8921895f;
 	level.var_9aaae7ae = &function_869d6f66;
 	level.var_2d4e3645 = &function_d9e1ec4d;
 	level.bgb_activation_validation_callback = &function_98a0818e;
