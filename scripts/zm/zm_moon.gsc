@@ -214,7 +214,7 @@ function main()
 	level.var_2d4e3645 = &function_d9e1ec4d;
 	level.var_35efa94c = &function_f97e7fed;
 	level.var_9f5c2c50 = &function_e36dbcf4;
-	level.var_4824bb2d = &function_69e4bd99;
+	level.bgb_round_reset_callback = &is_not_entering_no_mans_land;
 	level thread zm::register_sidequest("EOA", "ZOMBIE_TEMPLE_SIDEQUEST");
 	level thread zm::register_sidequest("MOON", "ZOMBIE_MOON_SIDEQUEST_TOTAL");
 	_zm_weap_bowie::init();
@@ -420,7 +420,7 @@ function function_e36dbcf4()
 }
 
 /*
-	Name: function_69e4bd99
+	Name: is_not_entering_no_mans_land
 	Namespace: zm_moon
 	Checksum: 0xC7C1DAC9
 	Offset: 0x2E38
@@ -428,7 +428,7 @@ function function_e36dbcf4()
 	Parameters: 0
 	Flags: Linked
 */
-function function_69e4bd99()
+function is_not_entering_no_mans_land()
 {
 	if(level flag::get("enter_nml"))
 	{

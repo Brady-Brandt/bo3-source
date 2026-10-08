@@ -258,9 +258,11 @@ function private bgb_player_monitor()
 	while(true)
 	{
 		str_return = level util::waittill_any_return("between_round_over", "restart_round");
-		if(isdefined(level.var_4824bb2d))
+		if(isdefined(level.bgb_round_reset_callback))
 		{
-			if(!(isdefined(self [[level.var_4824bb2d]]()) && self [[level.var_4824bb2d]]()))
+			// entering no man's land on moon must act like a round transition
+			// so if this occurs we don't want to reset the gobblegum machine
+			if(!(isdefined(self [[level.bgb_round_reset_callback]]()) && self [[level.bgb_round_reset_callback]]()))
 			{
 				continue;
 			}
