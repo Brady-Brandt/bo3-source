@@ -501,7 +501,9 @@ function sub_consumable_bgb(bgb)
 	{
 		return;
 	}
-	if(isdefined(level.bgb[bgb].var_35e23ba2) && ![[level.bgb[bgb].var_35e23ba2]]())
+	// this function is only defined on revelations for crate/wall power after the wisp EE has been completed
+	// Since all the box/wall weapons are packed buying a gun should not consume these gobblegums
+	if(isdefined(level.bgb[bgb].should_consume_callback) && ![[level.bgb[bgb].should_consume_callback]]())
 	{
 		return;
 	}
@@ -1476,7 +1478,7 @@ function set_invulnerability(name, enable_invulnerability)
 }
 
 /*
-	Name: function_93da425
+	Name: set_should_consume_callback
 	Namespace: bgb
 	Checksum: 0xE1943FD8
 	Offset: 0x3F38
@@ -1484,12 +1486,12 @@ function set_invulnerability(name, enable_invulnerability)
 	Parameters: 2
 	Flags: None
 */
-function function_93da425(name, var_35e23ba2)
+function set_should_consume_callback(name, should_consume_callback)
 {
 	/#
 		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
-	level.bgb[name].var_35e23ba2 = var_35e23ba2;
+	level.bgb[name].should_consume_callback = should_consume_callback;
 }
 
 /*

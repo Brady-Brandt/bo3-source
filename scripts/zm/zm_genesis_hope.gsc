@@ -330,8 +330,8 @@ function function_6143b210(e_triggerer)
 	level.wallbuy_should_upgrade_weapon_override = &function_afddb902;
 	level.magicbox_should_upgrade_weapon_override = &function_7e7eb906;
 	zm_genesis_timer::function_cc8ae246(200);
-	level thread bgb::function_93da425("zm_bgb_crate_power", &function_f648c43);
-	level thread bgb::function_93da425("zm_bgb_wall_power", &function_f648c43);
+	level thread bgb::set_should_consume_callback("zm_bgb_crate_power", &should_consume_bgb);
+	level thread bgb::set_should_consume_callback("zm_bgb_wall_power", &should_consume_bgb);
 }
 
 /*
@@ -363,7 +363,7 @@ function function_afddb902()
 }
 
 /*
-	Name: function_f648c43
+	Name: should_consume_bgb
 	Namespace: zm_genesis_hope
 	Checksum: 0xE9909B22
 	Offset: 0x1108
@@ -371,7 +371,7 @@ function function_afddb902()
 	Parameters: 0
 	Flags: Linked
 */
-function function_f648c43()
+function should_consume_bgb()
 {
 	return false;
 }
