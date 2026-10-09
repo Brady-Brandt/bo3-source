@@ -1698,7 +1698,7 @@ function get_player_dropped_powerup_origin()
 }
 
 /*
-	Name: function_dea74fb0
+	Name: bgb_drop_specific_powerup
 	Namespace: bgb
 	Checksum: 0xADF187F6
 	Offset: 0x4598
@@ -1706,7 +1706,7 @@ function get_player_dropped_powerup_origin()
 	Parameters: 2
 	Flags: Linked
 */
-function function_dea74fb0(str_powerup, v_origin = self get_player_dropped_powerup_origin())
+function bgb_drop_specific_powerup(str_powerup, v_origin = self get_player_dropped_powerup_origin())
 {
 	e_powerup = zm_powerups::specific_powerup_drop(str_powerup, v_origin);
 	wait(1);

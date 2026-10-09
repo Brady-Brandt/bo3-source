@@ -51,6 +51,6 @@ function __init__()
 */
 function activation()
 {
-	self thread bgb::function_dea74fb0("nuke");
+	self thread bgb::bgb_drop_specific_powerup("nuke");
 }
 

@@ -73,15 +73,15 @@ function activation()
 {
 	self endon(#"disconnect");
 	self endon(#"bled_out");
-	level thread bgb::function_dea74fb0("minigun", self function_ed573cc2(1));
+	level thread bgb::bgb_drop_specific_powerup("minigun", self function_ed573cc2(1));
 	self thread zm_bgb_extra_credit::function_b18c3b2d(self function_ed573cc2(2));
-	level thread bgb::function_dea74fb0("nuke", self function_ed573cc2(3));
-	level thread bgb::function_dea74fb0("carpenter", self function_ed573cc2(4));
-	level thread bgb::function_dea74fb0("free_perk", self function_ed573cc2(5));
-	level thread bgb::function_dea74fb0("fire_sale", self function_ed573cc2(6));
-	level thread bgb::function_dea74fb0("insta_kill", self function_ed573cc2(7));
-	level thread bgb::function_dea74fb0("full_ammo", self function_ed573cc2(8));
-	level thread bgb::function_dea74fb0("double_points", self function_ed573cc2(9));
+	level thread bgb::bgb_drop_specific_powerup("nuke", self function_ed573cc2(3));
+	level thread bgb::bgb_drop_specific_powerup("carpenter", self function_ed573cc2(4));
+	level thread bgb::bgb_drop_specific_powerup("free_perk", self function_ed573cc2(5));
+	level thread bgb::bgb_drop_specific_powerup("fire_sale", self function_ed573cc2(6));
+	level thread bgb::bgb_drop_specific_powerup("insta_kill", self function_ed573cc2(7));
+	level thread bgb::bgb_drop_specific_powerup("full_ammo", self function_ed573cc2(8));
+	level thread bgb::bgb_drop_specific_powerup("double_points", self function_ed573cc2(9));
 	self.var_b90dda44 = 1;
 	self thread function_7892610e();
 }

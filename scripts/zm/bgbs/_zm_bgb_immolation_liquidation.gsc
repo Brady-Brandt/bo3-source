@@ -51,7 +51,7 @@ function __init__()
 */
 function activation()
 {
-	self thread bgb::function_dea74fb0("fire_sale");
+	self thread bgb::bgb_drop_specific_powerup("fire_sale");
 }
 
 /*

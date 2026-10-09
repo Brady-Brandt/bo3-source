@@ -52,6 +52,6 @@ function __init__()
 */
 function activation()
 {
-	self thread bgb::function_dea74fb0("free_perk");
+	self thread bgb::bgb_drop_specific_powerup("free_perk");
 }
 
