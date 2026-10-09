@@ -185,7 +185,7 @@ function function_48adddeb(str_vision)
 	}
 	else if(self.var_e20073c4 == 3)
 	{
-		bgb::function_650ca64(6);
+		bgb::enable_action_slot(6);
 	}
 }
 

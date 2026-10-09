@@ -57,7 +57,7 @@ function enable()
 	self endon(#"disconnect");
 	self endon(#"bled_out");
 	self endon(#"bgb_update");
-	bgb::function_650ca64(7);
+	bgb::enable_action_slot(7);
 	while(true)
 	{
 		self waittill(#"zm_bgb_secret_shopper", var_2757208f);
@@ -76,7 +76,7 @@ function enable()
 */
 function disable()
 {
-	bgb::function_eabb0903();
+	bgb::disable_action_slot();
 }
 
 /*

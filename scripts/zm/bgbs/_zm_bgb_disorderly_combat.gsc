@@ -47,7 +47,7 @@ function __init__()
 		return;
 	}
 	bgb::register("zm_bgb_disorderly_combat", "time", 300, &enable, &disable, undefined, undefined);
-	bgb::function_2060b89("zm_bgb_disorderly_combat");
+	bgb::register_cancellable("zm_bgb_disorderly_combat");
 	level.var_8fcdc919 = [];
 	level.var_5013e65c = [];
 }

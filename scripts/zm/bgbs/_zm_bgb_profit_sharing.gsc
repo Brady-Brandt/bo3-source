@@ -43,7 +43,7 @@ function __init__()
 	clientfield::register("allplayers", "zm_bgb_profit_sharing_3p_fx", 15000, 1, "int");
 	clientfield::register("toplayer", "zm_bgb_profit_sharing_1p_fx", 15000, 1, "int");
 	bgb::register("zm_bgb_profit_sharing", "time", 600, &enable, &disable, undefined, undefined);
-	bgb::function_ff4b2998("zm_bgb_profit_sharing", &add_to_player_score_override, 1);
+	bgb::register_add_to_player_score_override("zm_bgb_profit_sharing", &add_to_player_score_override, 1);
 }
 
 /*

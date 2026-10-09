@@ -785,7 +785,7 @@ function private bgb_limit_monitor()
 	self notify(#"bgb_limit_monitor");
 	self endon(#"bgb_limit_monitor");
 	self clientfield::set_player_uimodel("bgb_display", 1);
-	self thread function_5fc6d844(self.bgb);
+	self thread check_for_cancellable(self.bgb);
 	switch(level.bgb[self.bgb].limit_type)
 	{
 		case "activated":
@@ -935,7 +935,7 @@ function private can_activate_bgb(ignore_drinking_check = 0)
 }
 
 /*
-	Name: function_5fc6d844
+	Name: check_for_cancellable
 	Namespace: bgb
 	Checksum: 0x542A2377
 	Offset: 0x2F68
@@ -943,14 +943,14 @@ function private can_activate_bgb(ignore_drinking_check = 0)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_5fc6d844(bgb)
+function private check_for_cancellable(bgb)
 {
 	self endon(#"disconnect");
 	self endon(#"bled_out");
 	self endon(#"bgb_update");
-	if(isdefined(level.bgb[bgb].var_50fe45f6) && level.bgb[bgb].var_50fe45f6)
+	if(isdefined(level.bgb[bgb].is_cancellable) && level.bgb[bgb].is_cancellable)
 	{
-		function_650ca64(6);
+		enable_action_slot(6);
 	}
 	else
 	{
@@ -961,7 +961,7 @@ function private function_5fc6d844(bgb)
 }
 
 /*
-	Name: function_650ca64
+	Name: enable_action_slot
 	Namespace: bgb
 	Checksum: 0x981D146B
 	Offset: 0x3018
@@ -969,14 +969,14 @@ function private function_5fc6d844(bgb)
 	Parameters: 1
 	Flags: Linked
 */
-function function_650ca64(n_value)
+function enable_action_slot(n_value)
 {
 	self setactionslot(1, "bgb");
 	self clientfield::set_player_uimodel("bgb_activations_remaining", n_value);
 }
 
 /*
-	Name: function_eabb0903
+	Name: disable_action_slot
 	Namespace: bgb
 	Checksum: 0x5CF03FCD
 	Offset: 0x3070
@@ -984,7 +984,7 @@ function function_650ca64(n_value)
 	Parameters: 1
 	Flags: Linked
 */
-function function_eabb0903(n_value)
+function disable_action_slot(n_value)
 {
 	self clientfield::set_player_uimodel("bgb_activations_remaining", 0);
 }
@@ -1443,7 +1443,7 @@ function register_lost_perk_override(name, lost_perk_override_func, lost_perk_ov
 }
 
 /*
-	Name: function_ff4b2998
+	Name: register_add_to_player_score_override
 	Namespace: bgb
 	Checksum: 0xCD6631BB
 	Offset: 0x3E30
@@ -1451,7 +1451,7 @@ function register_lost_perk_override(name, lost_perk_override_func, lost_perk_ov
 	Parameters: 3
 	Flags: Linked
 */
-function function_ff4b2998(name, add_to_player_score_override_func, add_to_player_score_override_func_always_run)
+function register_add_to_player_score_override(name, add_to_player_score_override_func, add_to_player_score_override_func_always_run)
 {
 	/#
 		assert(isdefined(level.bgb[name]), ("" + name) + "");
@@ -1495,7 +1495,7 @@ function set_should_consume_callback(name, should_consume_callback)
 }
 
 /*
-	Name: function_2060b89
+	Name: register_cancellable
 	Namespace: bgb
 	Checksum: 0x1163C55B
 	Offset: 0x3FA8
@@ -1503,12 +1503,12 @@ function set_should_consume_callback(name, should_consume_callback)
 	Parameters: 1
 	Flags: Linked
 */
-function function_2060b89(name)
+function register_cancellable(name)
 {
 	/#
 		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
-	level.bgb[name].var_50fe45f6 = 1;
+	level.bgb[name].is_cancellable = 1;
 }
 
 /*
