@@ -57,7 +57,7 @@ function activation()
 	n_roll = randomfloatrange(0, 1);
 	if(n_roll < 0.75)
 	{
-		random_drop = zm_powerups::specific_powerup_drop(zm_powerups::get_regular_random_powerup_name(), powerup_origin);
+		e_powerup = zm_powerups::specific_powerup_drop(zm_powerups::get_regular_random_powerup_name(), powerup_origin);
 	}
 	else
 	{
@@ -80,13 +80,13 @@ function activation()
 				str_powerup = get_random_powerup_str();
 			}
 		}
-		random_drop = zm_powerups::specific_powerup_drop(str_powerup, powerup_origin, undefined, undefined, undefined, self);
+		e_powerup = zm_powerups::specific_powerup_drop(str_powerup, powerup_origin, undefined, undefined, undefined, self);
 	}
-	is_in_enabled_zone = zm_utility::check_point_in_enabled_zone(random_drop.origin, undefined, undefined);
+	is_in_enabled_zone = zm_utility::check_point_in_enabled_zone(e_powerup.origin, undefined, undefined);
 	wait(1);
 	if(!is_in_enabled_zone)
 	{
-		level thread bgb::function_434235f9(random_drop);
+		level thread bgb::function_434235f9(e_powerup);
 	}
 }
 

@@ -1058,13 +1058,13 @@ function function_cc8fe309(var_c79d3f71, var_18130313)
 		level._powerup_timeout_custom_time = &namespace_1aa6bd0c::function_3321a018;
 		e_linkto = util::spawn_model("tag_origin", level.var_1a139831.origin, level.var_1a139831.angles);
 		e_linkto linkto(level.var_1a139831);
-		var_93eb638b = zm_powerups::specific_powerup_drop("full_ammo", var_18130313 + (vectorscale((0, 0, -1), 16)));
-		var_93eb638b linkto(e_linkto);
+		e_powerup = zm_powerups::specific_powerup_drop("full_ammo", var_18130313 + (vectorscale((0, 0, -1), 16)));
+		e_powerup linkto(e_linkto);
 		level._powerup_timeout_custom_time = undefined;
 	}
 	else
 	{
-		var_93eb638b = zm_powerups::specific_powerup_drop("full_ammo", var_18130313 + (vectorscale((0, 0, -1), 16)));
+		e_powerup = zm_powerups::specific_powerup_drop("full_ammo", var_18130313 + (vectorscale((0, 0, -1), 16)));
 	}
 	level.zm_override_ai_aftermath_powerup_drop = undefined;
 }

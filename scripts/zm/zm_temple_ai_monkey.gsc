@@ -857,7 +857,7 @@ function _monkey_play_stolen_loop()
 	Parameters: 1
 	Flags: Linked
 */
-function _monkey_getspawnlocation(var_93eb638b)
+function _monkey_getspawnlocation(e_powerup)
 {
 	var_9199584e = self monkey_getmonkeyspawnlocation(700, 0, 1);
 	if(!isdefined(var_9199584e))
@@ -868,9 +868,9 @@ function _monkey_getspawnlocation(var_93eb638b)
 	{
 		var_9199584e = self monkey_getmonkeyspawnlocation(0, 0, 0);
 	}
-	if(!isdefined(var_9199584e) && isdefined(var_93eb638b))
+	if(!isdefined(var_9199584e) && isdefined(e_powerup))
 	{
-		var_9199584e = getbarrierattacklocation(var_93eb638b);
+		var_9199584e = getbarrierattacklocation(e_powerup);
 	}
 	return var_9199584e;
 }

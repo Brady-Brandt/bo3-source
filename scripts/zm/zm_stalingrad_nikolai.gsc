@@ -1103,13 +1103,13 @@ function function_6e418eff(var_56d259ba)
 function function_830cf1ca()
 {
 	var_1cee535f = struct::get("s_nikolai_full_ammo", "targetname");
-	var_93eb638b = zm_powerups::specific_powerup_drop("full_ammo", var_1cee535f.origin);
-	var_93eb638b notify(#"powerup_reset");
-	var_93eb638b endon(#"powerup_grabbed");
+	e_powerup = zm_powerups::specific_powerup_drop("full_ammo", var_1cee535f.origin);
+	e_powerup notify(#"powerup_reset");
+	e_powerup endon(#"powerup_grabbed");
 	level waittill(#"nikolai_complete");
-	if(isdefined(var_93eb638b))
+	if(isdefined(e_powerup))
 	{
-		var_93eb638b thread zm_powerups::powerup_timeout();
+		e_powerup thread zm_powerups::powerup_timeout();
 	}
 }
 

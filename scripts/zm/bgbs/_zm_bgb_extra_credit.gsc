@@ -70,12 +70,12 @@ function function_b18c3b2d(origin)
 {
 	self endon(#"disconnect");
 	self endon(#"bled_out");
-	var_93eb638b = zm_powerups::specific_powerup_drop("bonus_points_player", origin, undefined, undefined, 0.1);
-	var_93eb638b.bonus_points_powerup_override = &function_3258dd42;
+	e_powerup = zm_powerups::specific_powerup_drop("bonus_points_player", origin, undefined, undefined, 0.1);
+	e_powerup.bonus_points_powerup_override = &function_3258dd42;
 	wait(1);
-	if(isdefined(var_93eb638b) && (!var_93eb638b zm::in_enabled_playable_area() && !var_93eb638b zm::in_life_brush()))
+	if(isdefined(e_powerup) && (!e_powerup zm::in_enabled_playable_area() && !e_powerup zm::in_life_brush()))
 	{
-		level thread bgb::function_434235f9(var_93eb638b);
+		level thread bgb::function_434235f9(e_powerup);
 	}
 }
 

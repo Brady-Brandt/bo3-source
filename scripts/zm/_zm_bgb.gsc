@@ -1708,11 +1708,11 @@ function get_player_dropped_powerup_origin()
 */
 function function_dea74fb0(str_powerup, v_origin = self get_player_dropped_powerup_origin())
 {
-	var_93eb638b = zm_powerups::specific_powerup_drop(str_powerup, v_origin);
+	e_powerup = zm_powerups::specific_powerup_drop(str_powerup, v_origin);
 	wait(1);
-	if(isdefined(var_93eb638b) && (!var_93eb638b zm::in_enabled_playable_area() && !var_93eb638b zm::in_life_brush()))
+	if(isdefined(e_powerup) && (!e_powerup zm::in_enabled_playable_area() && !e_powerup zm::in_life_brush()))
 	{
-		level thread function_434235f9(var_93eb638b);
+		level thread function_434235f9(e_powerup);
 	}
 }
 
@@ -1725,16 +1725,16 @@ function function_dea74fb0(str_powerup, v_origin = self get_player_dropped_power
 	Parameters: 1
 	Flags: Linked
 */
-function function_434235f9(var_93eb638b)
+function function_434235f9(e_powerup)
 {
-	if(!isdefined(var_93eb638b))
+	if(!isdefined(e_powerup))
 	{
 		return;
 	}
-	var_93eb638b ghost();
-	var_93eb638b.clone_model = util::spawn_model(var_93eb638b.model, var_93eb638b.origin, var_93eb638b.angles);
-	var_93eb638b.clone_model linkto(var_93eb638b);
-	direction = var_93eb638b.origin;
+	e_powerup ghost();
+	e_powerup.clone_model = util::spawn_model(e_powerup.model, e_powerup.origin, e_powerup.angles);
+	e_powerup.clone_model linkto(e_powerup);
+	direction = e_powerup.origin;
 	direction = (direction[1], direction[0], 0);
 	if(direction[1] < 0 || (direction[0] > 0 && direction[1] > 0))
 	{
@@ -1744,7 +1744,7 @@ function function_434235f9(var_93eb638b)
 	{
 		direction = (direction[0] * -1, direction[1], 0);
 	}
-	if(!(isdefined(var_93eb638b.sndnosamlaugh) && var_93eb638b.sndnosamlaugh))
+	if(!(isdefined(e_powerup.sndnosamlaugh) && e_powerup.sndnosamlaugh))
 	{
 		players = getplayers();
 		for(i = 0; i < players.size; i++)
@@ -1755,23 +1755,23 @@ function function_434235f9(var_93eb638b)
 			}
 		}
 	}
-	playfxontag(level._effect["samantha_steal"], var_93eb638b, "tag_origin");
-	var_93eb638b.clone_model unlink();
-	var_93eb638b.clone_model movez(60, 1, 0.25, 0.25);
-	var_93eb638b.clone_model vibrate(direction, 1.5, 2.5, 1);
-	var_93eb638b.clone_model waittill(#"movedone");
+	playfxontag(level._effect["samantha_steal"], e_powerup, "tag_origin");
+	e_powerup.clone_model unlink();
+	e_powerup.clone_model movez(60, 1, 0.25, 0.25);
+	e_powerup.clone_model vibrate(direction, 1.5, 2.5, 1);
+	e_powerup.clone_model waittill(#"movedone");
 	if(isdefined(self.damagearea))
 	{
 		self.damagearea delete();
 	}
-	var_93eb638b.clone_model delete();
-	if(isdefined(var_93eb638b))
+	e_powerup.clone_model delete();
+	if(isdefined(e_powerup))
 	{
-		if(isdefined(var_93eb638b.damagearea))
+		if(isdefined(e_powerup.damagearea))
 		{
-			var_93eb638b.damagearea delete();
+			e_powerup.damagearea delete();
 		}
-		var_93eb638b zm_powerups::powerup_delete();
+		e_powerup zm_powerups::powerup_delete();
 	}
 }
 

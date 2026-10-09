@@ -296,9 +296,9 @@ function function_7a25b639(drop_point)
 	}
 	if(math::cointoss() || getaicount() < 1)
 	{
-		var_93eb638b = zm_powerups::specific_powerup_drop("island_seed", drop_point);
+		e_powerup = zm_powerups::specific_powerup_drop("island_seed", drop_point);
 		level flag::set("round_1_seed_spawned");
-		level thread function_ca5485fa(var_93eb638b);
+		level thread function_ca5485fa(e_powerup);
 		level.var_9895ed0d++;
 		return true;
 	}
@@ -340,8 +340,8 @@ function function_1f5d3f75(drop_point)
 			println("");
 		#/
 	}
-	var_93eb638b = zm_powerups::specific_powerup_drop("island_seed", drop_point);
-	level thread function_ca5485fa(var_93eb638b);
+	e_powerup = zm_powerups::specific_powerup_drop("island_seed", drop_point);
+	level thread function_ca5485fa(e_powerup);
 	level.var_9895ed0d++;
 	level.var_e964b72 = 0;
 	return true;
@@ -392,10 +392,10 @@ function function_af95a19e()
 	Parameters: 1
 	Flags: Linked
 */
-function function_ca5485fa(var_93eb638b)
+function function_ca5485fa(e_powerup)
 {
-	var_93eb638b endon(#"powerup_grabbed");
-	var_93eb638b waittill(#"powerup_timedout");
+	e_powerup endon(#"powerup_grabbed");
+	e_powerup waittill(#"powerup_timedout");
 	if(level.var_9895ed0d > 0)
 	{
 		level.var_9895ed0d--;

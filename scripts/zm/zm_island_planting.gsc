@@ -938,9 +938,9 @@ function function_41663231(b_upgraded = 0)
 	{
 		case "points":
 		{
-			var_93eb638b = zm_powerups::specific_powerup_drop("bonus_points_player", self.origin + vectorscale((0, 0, 1), 8), undefined, undefined, 1);
+			e_powerup = zm_powerups::specific_powerup_drop("bonus_points_player", self.origin + vectorscale((0, 0, 1), 8), undefined, undefined, 1);
 			e_who notify(#"player_revealed_cache_plant_good");
-			var_93eb638b util::waittill_any("powerup_grabbed", "death", "powerup_reset", "powerup_timedout");
+			e_powerup util::waittill_any("powerup_grabbed", "death", "powerup_reset", "powerup_timedout");
 			break;
 		}
 		case "pistol":
@@ -1253,10 +1253,10 @@ function function_a6084535(b_upgraded = 0, var_98b687fa)
 	{
 		case "points":
 		{
-			var_93eb638b = zm_powerups::specific_powerup_drop("bonus_points_team", self.origin + vectorscale((0, 0, 1), 8), undefined, undefined, 1);
-			var_93eb638b thread function_61d38f32();
+			e_powerup = zm_powerups::specific_powerup_drop("bonus_points_team", self.origin + vectorscale((0, 0, 1), 8), undefined, undefined, 1);
+			e_powerup thread function_61d38f32();
 			e_who notify(#"player_revealed_cache_plant_good");
-			var_93eb638b util::waittill_any("powerup_grabbed", "death", "powerup_reset", "powerup_timedout");
+			e_powerup util::waittill_any("powerup_grabbed", "death", "powerup_reset", "powerup_timedout");
 			break;
 		}
 		case "weapon":
@@ -1283,18 +1283,18 @@ function function_a6084535(b_upgraded = 0, var_98b687fa)
 			{
 				str_powerup = array::random(level.var_c88b32a2);
 			}
-			var_93eb638b = zm_powerups::specific_powerup_drop(str_powerup, self.origin + vectorscale((0, 0, 1), 8), undefined, undefined, 1);
-			var_93eb638b thread function_61d38f32();
+			e_powerup = zm_powerups::specific_powerup_drop(str_powerup, self.origin + vectorscale((0, 0, 1), 8), undefined, undefined, 1);
+			e_powerup thread function_61d38f32();
 			e_who notify(#"player_revealed_cache_plant_good");
-			var_93eb638b util::waittill_any("powerup_grabbed", "death", "powerup_reset", "powerup_timedout");
+			e_powerup util::waittill_any("powerup_grabbed", "death", "powerup_reset", "powerup_timedout");
 			break;
 		}
 		case "perk_bottle":
 		{
-			var_93eb638b = zm_powerups::specific_powerup_drop("empty_perk", self.origin + vectorscale((0, 0, 1), 8), undefined, undefined, 1);
-			var_93eb638b thread function_61d38f32();
+			e_powerup = zm_powerups::specific_powerup_drop("empty_perk", self.origin + vectorscale((0, 0, 1), 8), undefined, undefined, 1);
+			e_powerup thread function_61d38f32();
 			e_who notify(#"player_revealed_cache_plant_good");
-			var_93eb638b util::waittill_any("powerup_grabbed", "death", "powerup_reset", "powerup_timedout");
+			e_powerup util::waittill_any("powerup_grabbed", "death", "powerup_reset", "powerup_timedout");
 			break;
 		}
 		case "aa_gun_ammo":

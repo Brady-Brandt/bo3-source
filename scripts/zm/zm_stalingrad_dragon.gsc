@@ -4782,10 +4782,10 @@ function function_4e639a6a()
 	while(true)
 	{
 		level waittill(#"hash_2425bb5b");
-		var_93eb638b = zm_powerups::specific_powerup_drop("full_ammo", s_dragon_boss_full_ammo.origin);
-		var_93eb638b notify(#"powerup_reset");
-		level thread function_bdbc171f(var_93eb638b);
-		var_93eb638b waittill(#"powerup_grabbed");
+		e_powerup = zm_powerups::specific_powerup_drop("full_ammo", s_dragon_boss_full_ammo.origin);
+		e_powerup notify(#"powerup_reset");
+		level thread function_bdbc171f(e_powerup);
+		e_powerup waittill(#"powerup_grabbed");
 	}
 }
 
@@ -4798,13 +4798,13 @@ function function_4e639a6a()
 	Parameters: 1
 	Flags: Linked
 */
-function function_bdbc171f(var_93eb638b)
+function function_bdbc171f(e_powerup)
 {
-	var_93eb638b endon(#"powerup_grabbed");
+	e_powerup endon(#"powerup_grabbed");
 	level waittill(#"nikolai_complete");
-	if(isdefined(var_93eb638b))
+	if(isdefined(e_powerup))
 	{
-		var_93eb638b thread zm_powerups::powerup_timeout();
+		e_powerup thread zm_powerups::powerup_timeout();
 	}
 }
 

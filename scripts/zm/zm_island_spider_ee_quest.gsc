@@ -354,8 +354,8 @@ function function_69f5a9c5(var_1cdfa0f4)
 function function_901514b1()
 {
 	level._powerup_timeout_custom_time = &function_3321a018;
-	var_93eb638b = zm_powerups::specific_powerup_drop(undefined, level.var_1a139831.origin - vectorscale((0, 0, 1), 110));
-	var_93eb638b linkto(level.var_1a139831);
+	e_powerup = zm_powerups::specific_powerup_drop(undefined, level.var_1a139831.origin - vectorscale((0, 0, 1), 110));
+	e_powerup linkto(level.var_1a139831);
 	level._powerup_timeout_custom_time = undefined;
 }
 
@@ -368,7 +368,7 @@ function function_901514b1()
 	Parameters: 1
 	Flags: Linked
 */
-function function_3321a018(var_93eb638b)
+function function_3321a018(e_powerup)
 {
 	return 90;
 }

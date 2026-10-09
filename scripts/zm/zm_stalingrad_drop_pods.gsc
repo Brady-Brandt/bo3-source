@@ -1133,9 +1133,9 @@ function function_94bb84a1(var_e7a36389, var_51d4ce0d)
 			else
 			{
 				str_powerup = zm_powerups::get_regular_random_powerup_name();
-				var_93eb638b = zm_powerups::specific_powerup_drop(str_powerup, var_165d49f6.origin - vectorscale((0, 0, 1), 8));
-				var_93eb638b setscale(0.5);
-				var_93eb638b thread function_8f66c62a();
+				e_powerup = zm_powerups::specific_powerup_drop(str_powerup, var_165d49f6.origin - vectorscale((0, 0, 1), 8));
+				e_powerup setscale(0.5);
+				e_powerup thread function_8f66c62a();
 			}
 			foreach(player in level.activeplayers)
 			{
