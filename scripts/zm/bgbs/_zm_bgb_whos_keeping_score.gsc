@@ -52,6 +52,6 @@ function __init__()
 */
 function activation()
 {
-	self thread bgb::function_dea74fb0("double_points");
+	self thread bgb::bgb_drop_specific_powerup("double_points");
 }
 
