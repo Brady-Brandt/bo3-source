@@ -86,7 +86,7 @@ function activation()
 	wait(1);
 	if(!is_in_enabled_zone)
 	{
-		level thread bgb::function_434235f9(e_powerup);
+		level thread bgb::powerup_stolen_by_sam(e_powerup);
 	}
 }
 

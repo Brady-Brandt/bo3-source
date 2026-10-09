@@ -75,7 +75,7 @@ function function_b18c3b2d(origin)
 	wait(1);
 	if(isdefined(e_powerup) && (!e_powerup zm::in_enabled_playable_area() && !e_powerup zm::in_life_brush()))
 	{
-		level thread bgb::function_434235f9(e_powerup);
+		level thread bgb::powerup_stolen_by_sam(e_powerup);
 	}
 }
 

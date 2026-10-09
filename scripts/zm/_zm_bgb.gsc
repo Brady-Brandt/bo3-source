@@ -1712,12 +1712,12 @@ function function_dea74fb0(str_powerup, v_origin = self get_player_dropped_power
 	wait(1);
 	if(isdefined(e_powerup) && (!e_powerup zm::in_enabled_playable_area() && !e_powerup zm::in_life_brush()))
 	{
-		level thread function_434235f9(e_powerup);
+		level thread powerup_stolen_by_sam(e_powerup);
 	}
 }
 
 /*
-	Name: function_434235f9
+	Name: powerup_stolen_by_sam
 	Namespace: bgb
 	Checksum: 0x7EED9115
 	Offset: 0x4668
@@ -1725,7 +1725,7 @@ function function_dea74fb0(str_powerup, v_origin = self get_player_dropped_power
 	Parameters: 1
 	Flags: Linked
 */
-function function_434235f9(e_powerup)
+function powerup_stolen_by_sam(e_powerup)
 {
 	if(!isdefined(e_powerup))
 	{
